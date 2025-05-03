@@ -9,7 +9,10 @@ import secrets
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATABASE_PATH = os.path.join(BASE_DIR, 'pastes.db')
 
-app = Flask(__name__)
+app = Flask(__name__,
+            static_folder='css',
+            template_folder='templates')
+
 app.config['SECRET_KEY'] = secrets.token_hex(32)
 app.config['SESSION_COOKIE_SECURE'] = True
 app.config['SESSION_COOKIE_HTTPONLY'] = True
