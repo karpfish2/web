@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline';">
+    <title>karpPaste_random</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar">
+            <h1 class="title">karpPaste_random</h1>
+        </nav>
+
+        <section class="paste-form">
+            <h2>Новая паста</h2>
+            <div class="paste-form-content">
+                <form method="POST" action="/api/pastes">
+                    <textarea name="text" id="paste-text" placeholder="Введите текст (максимум 1 000 000 символов)..." maxlength="1000000" required></textarea>
+                    <button type="submit" class="btn">Сохранить</button>
+                </form>
+                {% if message %}
+                <div class="message">{{ message }}</div>
+                {% endif %}
+            </div>
+        </section>
+
+        <section class="random-paste">
+            <h2>Случайная паста</h2>
+            <div class="paste-content-wrapper">
+                <form method="GET" action="/api/pastes/random">
+                    <div class="paste-actions">
+                        <button type="submit" class="btn">Показать случайную пасту</button>
+                    </div>
+                </form>
+                {% if random_paste %}
+                <div class="paste-content">{{ random_paste.text }}</div>
+                {% endif %}
+            </div>
+        </section>
+    </div>
+</body>
+</html> 
